@@ -1,8 +1,3 @@
-# 🦠 Cadena de Ataque del Ransomware WannaCry (Diagrama Mermaid)
-
-Este diagrama ilustra las fases clave que utilizó el malware WannaCry durante su propagación y ataque en 2017.
-
-```mermaid
 flowchart LR
   WANNA CRY - CADENA DE ATAQUE
   %% ========================
