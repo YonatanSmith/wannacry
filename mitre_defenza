@@ -1,0 +1,39 @@
+# 🛡️ Diagrama MITRE — Defensa y Detección (formato .md / Mermaid)
+
+> Diagrama visual que mapea técnicas MITRE ATT&CK comunes (ej. WannaCry) a controles defensivos y detecciones recomendadas.
+> Guardar como `MITRE-Defense-Diagram.md`. GitHub renderiza Mermaid automáticamente.
+
+---
+
+## 🗺️ Diagrama (Mermaid)
+
+```mermaid
+flowchart LR
+  %% ATTACK TECHNIQUES (izquierda)
+  TA[Acceso inicial<br/>T1190<br/>(Exploit)] --> D1[Patching & WAF/IDS]
+  TB[Ejecución<br/>T1203<br/>(Exploit -> Payload)] --> D2[EDR: ejecución anómala]
+  TC[Movimiento lateral<br/>T1021.002<br/>(SMB)] --> D3[Segmentación & MFA & Firewall]
+  TD[Persistencia<br/>T1543<br/>(Servicios/Tareas)] --> D4[HIPS & Monitor servicios]
+  TE[Cifrado de datos<br/>T1486] --> D5[Detección I/O masivo & Backups]
+  TF[Inhibición de recuperación<br/>T1490] --> D6[Monitoreo VSS & Alertas admin]
+
+  %% Defensas / Detecciones (derecha)
+  D1 --> R1["Regla: alert SMB exploit (IDS/IPS)"]
+  D2 --> R2["Regla: ejecución desde %TEMP% o %APPDATA% (EDR)"]
+  D3 --> R3["Regla: conexiones SMB anómalas (>N shares/hr)"]
+  D4 --> R4["Regla: creación de servicios/tareas con binarios no firmados"]
+  D5 --> R5["Regla: alta tasa de escrituras y cambios de extensión"]
+  D6 --> R6["Regla: comandos vssadmin/wbadmin en PowerShell logs"]
+
+  style TA fill:#f8d7da,stroke:#a33
+  style TB fill:#f8d7da,stroke:#a33
+  style TC fill:#f8d7da,stroke:#a33
+  style TD fill:#fff3cd,stroke:#aa6
+  style TE fill:#f5c6cb,stroke:#b33
+  style TF fill:#ffeeba,stroke:#aa6
+  style D1 fill:#d1ecf1,stroke:#17a2b8
+  style D2 fill:#d4edda,stroke:#28a745
+  style D3 fill:#d4edda,stroke:#28a745
+  style D4 fill:#fff3cd,stroke:#ffc107
+  style D5 fill:#d4edda,stroke:#28a745
+  style D6 fill:#d1ecf1,stroke:#17a2b8
